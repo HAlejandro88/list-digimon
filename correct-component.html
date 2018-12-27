@@ -1,0 +1,66 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../polymer/lib/elements/dom-repeat.html">
+
+<link rel="import" href="../paper-card/paper-card.html">
+<link rel="import" href="../paper-button/paper-button.html">
+
+<dom-module id="correct-component">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <paper-card image="[[digimon.image]]" style$="background-color: [[coloWithType]]">
+      <div>
+        <h2>[[digimon.name]]</h2>
+      </div>
+      <div class="card-actions">
+        <paper-button class="evolucion" on-click="evolucion">digeEvoluciona!!!!!!!</paper-button>
+    </div>
+    </paper-card>
+  </template>
+
+  <script>
+    /**
+     * `correct-component`
+     * 
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class CorrectComponent extends Polymer.Element {
+      static get is() { return 'correct-component'; }
+      static get properties() {
+        return {
+          digimon: {
+            type: Object,
+            value: {}
+          },
+          coloWithType: {
+            type: String,
+            computed: "_changeColorWithType(digimon)"
+          }
+        };
+      }
+      _changeColorWithType(digimon) {
+        let color = '';
+        if(digimon.type === 'Plant') {
+           color = '#CDDC39'
+        } else if (digimon.type == 'Fire') {
+           color = '#FF5722'
+        } else if (digimon.type == 'Water') {
+           color = '#1565C0'
+        }
+        else if (digimon.type == 'Electr') {
+          color = '#E9F406'
+        }
+          return color
+      }
+
+    }
+
+    window.customElements.define(CorrectComponent.is, CorrectComponent);
+  </script>
+</dom-module>
